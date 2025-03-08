@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sravan - Developer & Security Enthusiast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .hello{
+            text-decoration: line-through;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+        }
+        
+        /* Navigation Bar Styles - UPDATED */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem; /* Reduced vertical padding */
+            background-color: #1a1a2e; /* Changed background color */
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(-100%);
+            animation: slideDown 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+        
+        .logo-small {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.3rem 0; /* Reduced padding */
+            transition: color 0.3s;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4CAF50;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #4CAF50;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .intro-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s ease forwards;
+            animation-delay: 1s;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+            max-width: 700px;
+        }
+        
+        .skills {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.8s;
+        }
+        
+        .skill-tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .cta-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 2s;
+            font-weight: bold;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 2.5s;
+        }
+        
+        .social-link {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.2);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        .code-particle {
+            position: absolute;
+            color: #32cd32;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 60px; /* Adjusted for smaller navbar */
+                right: -100%;
+                flex-direction: column;
+                background-color: #1a1a2e;
+                width: 70%;
+                height: 100vh;
+                padding: 2rem;
+                transition: 0.5s;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .skills {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-small">SRAVAN</div>
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Projects</a>
+            <a href="#" class="nav-link">Skills</a>
+            <a href="#" class="nav-link">Blog</a>
+            <a href="#" class="nav-link">Contact</a>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+
+    <div class="code-particles" id="codeParticles"></div>
+    
+    <div class="intro-container">
+        <div class="logo"></div>
+        <h1>Hello There</h1>
+        <p class="tagline">I am Sravan, an aspiring full stack developer and cyber security enthusiast</p>
+        
+        <div class="skills">
+            <div class="skill-tag">JAVA</div>
+            <div class="skill-tag">HTML/CSS</div>
+            <!-- <div class="skill-tag hello">JavaScript</div>
+            <div class="skill-tag hello">Node.js</div> -->
+            <div class="skill-tag">Cyber Security</div>
+        </div>
+        
+        <button class="cta-button" id="portfolioButton">View My Work</button>
+        
+        <div class="social-links">
+            <a href="#" class="social-link">GH</a>
+            <a href="#" class="social-link">LI</a>
+            <a href="#" class="social-link">TW</a>
+        </div>
+    </div>
+
+    <script>
+        // Create code particles
+        const codeParticles = document.getElementById('codeParticles');
+        const particleCount = 30;
+        const codeSamples = [
+            '{ code: true }',
+            '<div>',
+            'function()',
+            'npm install',
+            'console.log()',
+            'addEventListener',
+            '#!/bin/bash',
+            'SELECT * FROM',
+            'git commit',
+            'sudo nmap',
+            'chmod +x',
+            'ssh -p 22',
+            '/etc/passwd',
+            'curl https://',
+            '401 Unauthorized',
+            'XSS Prevention'
+        ];
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('code-particle');
+            
+            // Random code sample
+            particle.textContent = codeSamples[Math.floor(Math.random() * codeSamples.length)];
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.8 + 0.2;
+            
+            // Animation
+            const animDuration = Math.random() * 20 + 10;
+            particle.style.animation = `float ${animDuration}s ease-in-out infinite`;
+            
+            codeParticles.appendChild(particle);
+        }
+        
+        // Button functionality
+        document.getElementById('portfolioButton').addEventListener('click', function() {
+            alert('hello');
+        });
+        
+        // Animate code particles occasionally
+        setInterval(() => {
+            const randomParticle = Math.floor(Math.random() * particleCount);
+            const particles = document.querySelectorAll('.code-particle');
+            if (particles[randomParticle]) {
+                const oldText = particles[randomParticle].textContent;
+                particles[randomParticle].style.color = '#ffffff';
+                
+                setTimeout(() => {
+                    particles[randomParticle].textContent = codeSamples[Math.floor(Math.random() * codeSamples.length)];
+                    particles[randomParticle].style.color = '#32cd32';
+                }, 300);
+            }
+        }, 1000);
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            const bars = document.querySelectorAll('.bar');
+            bars[0].classList.toggle('change');
+            bars[1].classList.toggle('change');
+            bars[2].classList.toggle('change');
+            
+            if (bars[0].classList.contains('change')) {
+                bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        // document.querySelectorAll('.nav-link').forEach(link => {
+        //     link.addEventListener('click', function(e) {
+        //         e.preventDefault();
+                
+        //         // Here you would normally add code to scroll to the section
+        //         // but we'll just show an alert for this demo
+        //         alert(`Navigation to ${this.textContent} section`);
+                
+        //         // Close mobile menu if open
+        //         if (navLinks.classList.contains('active')) {
+        //             menuToggle.click();
+        //         }
+        //     });
+        // });
+    </script>
+</body>
+</html>
